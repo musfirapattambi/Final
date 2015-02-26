@@ -1,0 +1,37 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/CSS" href="profilestyle.css">
+<title >Profle</title>
+</head>
+<body id="bdy">
+<div id="list">
+<ul>
+<li><a href="semester1.php?category=Semester 1">Semester 1</a></li>
+<li><a href="">Semester 2</a></li>
+<li><a href="">Semester 3</a></li>
+<li><a href="">Semester 4</a></li>
+<li><a href="profile.php">Back to home</a></li>
+</ul>
+</div>
+<div id="gmenu"><img src="images/menu.png" style="width:300px;height:440px;"/></div>
+	<div id="black"><img src="images/menu1.png" style="width:970px;height:410px;"/></div>
+	<div id="name"><h1>Indian Institute of Technology Madras</h1></div>
+	<div id="iitm"><img src="images/iitm.png" style="width:150px;height:150px;"/></div>
+	</body>
+	</html>
+	<div id="lname">
+	<?php
+	session_start();
+    $user = $_SESSION['uname'];
+	$con = mysqli_connect("localhost","root","","login");
+    $secondq = "select *from course,scourse where scourse.sid='$user' and scourse.code=course.code";
+		$result1 = mysqli_query($con,$secondq);
+		$check2 = mysqli_num_rows($result1);
+		$row1 = mysqli_fetch_assoc($result1);
+		if($check2>0)
+		{
+			$course=$row1['course'];
+			$code= $row1['code'];
+			echo "$course"."["."$code"."]";
+			}
+			?>
